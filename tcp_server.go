@@ -43,7 +43,7 @@ func main() {
                                         log.Println("Dekrypter melding: ", string(dekryptertMelding))
                                         switch msg := string(dekryptertMelding);msg {
                                          case "ping":
-                                                _, err = c.Write([]byte("pong"))
+                                                _, err = c.Write([]byte("ping"))
                                         default:
                                                 _, err = c.Write(buf[:n])
                                         }
