@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -18,6 +19,7 @@ func main() {
         }
         log.Printf("bundet til %s", server.Addr().String())
         wg.Add(1)
+
         go func() {
                 defer wg.Done()
                 for {
@@ -33,16 +35,19 @@ func main() {
                                         n, err := c.Read(buf)
                                         if err != nil {
                                                 if err != io.EOF {
-                                                        log.Println(err)
-						 }
+         log.Println(err)
+                                                }
                                                 return // fra for l  kke
                                         }
-                                        switch msg := string(buf[:n]); msg {
-                                        case "ran":
+                                        dekryptertMelding := mycrypt.Krypter([]rune(string(buf[:n])), mycrypt.ALF_SEM03, len(mycrypt.ALF_SEM03)-4)
+                                        log.Println("Dekrypter melding: ", string(dekryptertMelding))
+                                        switch msg := string(dekryptertMelding);msg {
+                                         case "ping":
                                                 _, err = c.Write([]byte("pong"))
                                         default:
                                                 _, err = c.Write(buf[:n])
                                         }
+
                                         if err != nil {
                                                 if err != io.EOF {
                                                         log.Println(err)
@@ -54,8 +59,5 @@ func main() {
                 }
         }()
         wg.Wait()
-}
 
-dekryptertMelding := mycrypt.Krypter([]rune(string(buf[:n])), mycrypt.ALF_SEM03, len(mycrypt.ALF_SEM03)-4)
-log.Println("Dekrypter melding: ", string(dekryptertMelding))
-switch msg := string(dekryptertMelding); msg { ...
+}
