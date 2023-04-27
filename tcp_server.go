@@ -6,7 +6,9 @@ import (
         "log"
         "net"
         "sync"
+        //"os"
         "github.com/Ajdin15/is105sem03/mycrypt"
+        //"github.com/Ajdin15/funtemps/conv"
 )
 
 func main() {
@@ -40,14 +42,18 @@ func main() {
                                                 return // fra for l  kke
                                         }
                                         dekryptertMelding := mycrypt.Krypter([]rune(string(buf[:n])), mycrypt.ALF_SEM03, len(mycrypt.ALF_SEM03)-4)
-                                        log.Println("Dekrypter melding: ", string(dekryptertMelding))
-                                        switch msg := string(dekryptertMelding);msg {
+                                         log.Println("Dekryptert melding: ", string(dekryptertMelding))
+                                        switch msg := string(dekryptertMelding); msg {
                                          case "ping":
-                                                _, err = c.Write([]byte("ping"))
-                                        default:
-                                                _, err = c.Write(buf[:n])
-                                        }
-
+                                                kryptertMelding := mycrypt.Krypter([]rune("pong"), mycrypt.ALF_SEM03, 4)
+                                                log.Println("Kryptert melding: ", string(kryptertMelding))
+                                                _, err = conn.Write([]byte(string(kryptertMelding)))
+                                       default:
+                                                 _, err = c.Write(buf[:n])
+            
+                                          
+                 
+                                        } 
                                         if err != nil {
                                                 if err != io.EOF {
                                                         log.Println(err)
