@@ -1,4 +1,8 @@
-github.com/Ajdin15/funtemps v0.0.0-20230220100701-2c01ac77382c h1:R4VcdcwcMa/ef6e+Lg/0csUPvfX4j1ds6pJPEJZkk2c=
-github.com/Ajdin15/funtemps v0.0.0-20230220100701-2c01ac77382c/go.mod h1:gl1cYrjwdYpY/2xYPg8nuknOM947VFsep6tb8rvwQaI=
+github.com/Ajdin15/funtemps v0.0.0-20230426165716-af0287bac213 h1:sgmIDGyr+0mxN7igmEYMELvcY37uRcEGTTlgt/wQAtg=
+github.com/Ajdin15/funtemps v0.0.0-20230426165716-af0287bac213/go.mod h1:gl1cYrjwdYpY/2xYPg8nuknOM947VFsep6tb8rvwQaI=
 github.com/Ajdin15/is105sem03 v0.0.0-20230421083852-e43b58bf9e2e h1:5cUx5MXUo5jeyC+6NMbBWQgilDTDHNxcoFXS+QdEBBo=
 github.com/Ajdin15/is105sem03 v0.0.0-20230421083852-e43b58bf9e2e/go.mod h1:fOQOgS5uPifa4JmYHc7TSAixOWWaHRhWh7EFfVZrS8w=
+github.com/uia-worker/minyr v0.0.0-20230414101051-285a0955c7f7 h1:nRuIYjeZijL7TXftVuWporc5pWIlT08fy1QCLXNQKl8=
+github.com/uia-worker/minyr v0.0.0-20230414101051-285a0955c7f7/go.mod h1:XYLd+DNID6F8Iy4+m13mkKh1IaGHQ9SO+QbrmPImE9M=
+github.com/uia-worker/misc v0.0.0-20230306201706-92c01d4aa553 h1:GG7TZQikBrgnHTWPww3Pj32XzKpMQ80sCN562TgOPyo=
+github.com/uia-worker/misc v0.0.0-20230306201706-92c01d4aa553/go.mod h1:KpplOC8PKuvyVl7IsIiGZGaEXNxK54Dgj0EoV7Czork=

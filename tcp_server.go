@@ -2,15 +2,19 @@
 package main
 
 import (
+        "fmt"
         "io"
         "log"
         "net"
         "sync"
         //"os"
         "github.com/Ajdin15/is105sem03/mycrypt"
-        //"github.com/Ajdin15/funtemps/conv"
+        "github.com/Ajdin15/funtemps/conv"
+        "strconv"
+        //"github.com/uia-worker/minyr/yr"
+        "strings"
+        "errors"
 )
-
 func main() {
 
         var wg sync.WaitGroup
@@ -48,6 +52,12 @@ func main() {
                                                 kryptertMelding := mycrypt.Krypter([]rune("pong"), mycrypt.ALF_SEM03, 4)
                                                 log.Println("Kryptert melding: ", string(kryptertMelding))
                                                 _, err = conn.Write([]byte(string(kryptertMelding)))
+                                         case "Kjevik;SN39040;18.03.2022 01:50;6":
+                                                 FarhenheitString, err := CelsiusToFarhenheitLine(string(dekryptertMelding))
+                                                 if err !=  nil  {
+                                                         log.Println(err)
+                                                }
+                                                _, err = conn.Write([]byte(string(FarhenheitString)))
                                        default:
                                                  _, err = c.Write(buf[:n])
             
@@ -66,4 +76,33 @@ func main() {
         }()
         wg.Wait()
 
+}
+func CelsiusToFarhenheitString(celsius string) (string, error) {
+	var fahrFloat float64
+	var err error
+       
+	if celsiusFloat, err := strconv.ParseFloat(celsius, 64); err == nil {
+		fahrFloat = conv.CelsiusToFarhenheit(celsiusFloat)
+	}
+	fahrString := fmt.Sprintf("%.1f", fahrFloat)
+	return fahrString, err
+}
+func CelsiusToFarhenheitLine(line string) (string, error) {
+
+        dividedString := strings.Split(line, ";")
+	var err error
+	
+	if (len(dividedString) == 4) {
+		dividedString[3], err = CelsiusToFarhenheitString(dividedString[3])
+		if err != nil {
+			return "", err
+		}
+	} else {
+		return "", errors.New("linje har ikke forventet format")
+	}
+	return strings.Join(dividedString, ";"), nil
+	
+	/*	
+	return "Kjevik;SN39040;18.03.2022 01:50;42.8", err
+        */
 }
